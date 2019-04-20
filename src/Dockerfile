@@ -1,8 +1,8 @@
 FROM php:7.3-apache
 
 RUN apt-get update \
- && apt-get install -y git zlib1g-dev \
- && docker-php-ext-install zip \
+ && apt-get install -y git libzip-dev zlib1g-dev \
+ && docker-php-ext-install zip pdo pdo_mysql \
  && a2enmod rewrite \
  && sed -i 's!/var/www/html!/var/www/public!g' /etc/apache2/sites-available/000-default.conf \
  && mv /var/www/html /var/www/public \
