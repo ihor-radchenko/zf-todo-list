@@ -15,16 +15,27 @@
         "php": "^5.6 || ^7.0",
         "zendframework/zend-component-installer": "^1.0 || ^0.7 || ^1.0.0-dev@dev",
         "zendframework/zend-mvc": "^3.0.1",
-        "zfcampus/zf-development-mode": "^3.0"
+        "zfcampus/zf-development-mode": "^3.0",
+        "doctrine/doctrine-orm-module": "^2.1",
+        "doctrine/migrations": "^2.0",
+        "zendframework/zend-crypt": "^3.3",
+        "lcobucci/jwt": "^3.2",
+        "nesbot/carbon": "^2.17",
+        "zendframework/zend-mvc-form": "^1.0",
+        "zendframework/zend-psr7bridge": "^1.2",
+        "zendframework/zend-stratigility": "^3.1",
+        "http-interop/http-server-middleware": "^1.1"
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "module/Application/src/"
+            "Application\\": "module/Application/src/",
+            "Auth\\": "module/Auth/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/"
+            "ApplicationTest\\": "module/Application/test/",
+            "AuthTest\\": "module/Auth/test/"
         }
     },
     "extra": [],

@@ -11,5 +11,28 @@
  * credentials from accidentally being committed into version control.
  */
 
+use Doctrine\DBAL\Driver\PDOMySql\Driver;
+
 return [
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'driverClass' => Driver::class,
+                'params'      => [
+                    'host'     => '',
+                    'user'     => '',
+                    'password' => '',
+                    'dbname'   => '',
+                ],
+            ],
+        ],
+    ],
+
+    'jwt' => [
+        'algorithm'   => 'hs384',  //available values: HS256, HS384, HS512, RS256, RS384, RS512, ES256, ES384, ES512
+        'secret'      => '',
+        'ttl_access'  => 3600,  //seconds
+        'ttl_refresh' => 20160,  //seconds
+        'jti_length'  => 16
+    ],
 ];

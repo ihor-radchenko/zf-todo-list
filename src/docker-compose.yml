@@ -9,12 +9,13 @@ services:
     volumes:
      - .:/var/www
     depends_on:
-     - mysql
+     - db
 
-  mysql:
-    container_name: mysql
-    image: mysql:8
+  db:
+    container_name: db
+    image: mysql:5.7
     restart: on-failure
+    command: --disable-partition-engine-check
     environment:
       MYSQL_DATABASE: todo_list
       MYSQL_USER: zf

@@ -12,5 +12,17 @@
  */
 
 return [
-    // ...
+    'doctrine' => [
+        'migrations_configuration' => [
+            'orm_default' => [
+                'directory' => 'data/migrations',
+                'name'      => 'Doctrine Database Migrations',
+                'namespace' => 'Migrations',
+                'table'     => 'migrations',
+            ],
+        ],
+    ],
+    'protectedRoutes' => [
+        'self',
+    ],
 ];
