@@ -28,14 +28,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "module/Application/src/",
-            "Auth\\": "module/Auth/src/"
+            "V1\\": "module/V1/src/",
+            "Auth\\": "module/Auth/src/",
+            "Application\\": "module/Application/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/",
-            "AuthTest\\": "module/Auth/test/"
+
         }
     },
     "extra": [],

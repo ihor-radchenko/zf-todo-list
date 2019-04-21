@@ -24,5 +24,6 @@ return [
     ],
     'protectedRoutes' => [
         'self',
+        'todos',
     ],
 ];

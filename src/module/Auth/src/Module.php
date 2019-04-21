@@ -5,6 +5,7 @@ namespace Auth;
 use Auth\Utils\BearerTokenParser;
 use Zend\Authentication\AuthenticationService;
 use Zend\Mvc\MvcEvent;
+use Zend\View\Model\JsonModel;
 
 class Module
 {
@@ -17,6 +18,8 @@ class Module
 
     public function onBootstrap(MvcEvent $e)
     {
+//        $e->setViewModel(new JsonModel);
+
         $app    = $e->getApplication();
         $em     = $app->getEventManager();
         $sm     = $app->getServiceManager();

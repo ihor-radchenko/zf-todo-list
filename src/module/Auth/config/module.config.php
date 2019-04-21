@@ -10,7 +10,6 @@ use Auth\Service\JwtAuthAdapter;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Zend\Authentication\AuthenticationService;
 use Zend\Router\Http\Literal;
-use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'doctrine'        => [
