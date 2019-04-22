@@ -119,6 +119,7 @@ class AuthController extends AbstractActionController
             $tokenCredentials = $this->jwtManager->decode($token);
             if (!$tokenCredentials['acc'] && $this->jwtManager->validate($tokenCredentials)) {
                 $user = $this->entityManager->getRepository(User::class)->find($tokenCredentials['sub']);
+                $this->jwtManager->invalid($tokenCredentials);
                 return new JsonModel($this->jwtManager->getFromSubject($user));
             }
         }
@@ -126,5 +127,24 @@ class AuthController extends AbstractActionController
         $this->getResponse()->setStatusCode(Response::STATUS_CODE_400);
 
         return new JsonModel(['content' => 'Invalid token.']);
+    }
+
+    /**
+     * @return JsonModel
+     * @throws \Auth\Exception\TokenInvalidException
+     */
+    public function logoutAction(): JsonModel
+    {
+        $authHeader = $this->getRequest()->getHeader('authorization');
+        if ($authHeader && ($token = BearerTokenParser::parse($authHeader->getFieldValue()))) {
+            $tokenCredentials = $this->jwtManager->decode($token);
+            if ($tokenCredentials['acc'] && $this->jwtManager->validate($tokenCredentials)) {
+                $this->jwtManager->invalid($tokenCredentials);
+            }
+        }
+
+        $this->getResponse()->setStatusCode(Response::STATUS_CODE_204);
+
+        return new JsonModel([]);
     }
 }

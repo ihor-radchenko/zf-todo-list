@@ -82,16 +82,22 @@ class JwtManager
     private $refreshTtl;
 
     /**
+     * @var BlacklistManager
+     */
+    private $blacklistManager;
+
+    /**
      * JwtManager constructor.
      *
      * @param Builder $builder
      * @param Parser $parser
      * @param ServerUrl $serverUrl
      * @param array $jwtConfig
+     * @param BlacklistManager $blacklistManager
      *
      * @throws JwtException
      */
-    public function __construct(Builder $builder, Parser $parser, ServerUrl $serverUrl, array $jwtConfig)
+    public function __construct(Builder $builder, Parser $parser, ServerUrl $serverUrl, array $jwtConfig, BlacklistManager $blacklistManager)
     {
         $this->builder = $builder;
         $this->parser = $parser;
@@ -102,6 +108,7 @@ class JwtManager
         $this->accessTtl = $jwtConfig['ttl_access'];
         $this->refreshTtl = $jwtConfig['ttl_refresh'];
         $this->signer = $this->getSigner();
+        $this->blacklistManager = $blacklistManager;
     }
 
     /**
@@ -179,7 +186,12 @@ class JwtManager
      */
     public function validate(array $data): bool
     {
-        return $data['iss'] === $this->serverUrl->getHost() && Carbon::createFromTimestamp($data['exp'])->greaterThan(Carbon::now());
+        return $data['iss'] === $this->serverUrl->getHost() && Carbon::createFromTimestamp($data['exp'])->greaterThan(Carbon::now()) && $this->blacklistManager->isValid($data['jti']);
+    }
+
+    public function invalid(array $data)
+    {
+        return $this->blacklistManager->invalidate($data['jti'], $data['acc'] ? $this->accessTtl : $this->refreshTtl);
     }
 
     /**

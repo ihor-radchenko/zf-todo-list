@@ -11,8 +11,10 @@
  * file.
  */
 
+use Zend\Cache\Storage\Adapter\Filesystem;
+
 return [
-    'doctrine' => [
+    'doctrine'        => [
         'migrations_configuration' => [
             'orm_default' => [
                 'directory' => 'data/migrations',
@@ -25,5 +27,6 @@ return [
     'protectedRoutes' => [
         'self',
         'todos',
+        'logout',
     ],
 ];

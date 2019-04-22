@@ -5,8 +5,12 @@ namespace Auth;
 use Auth\Controller\AuthController;
 use Auth\Controller\Factory\UserControllerFactory;
 use Auth\Controller\UserController;
+use Auth\Service\BlacklistManager;
+use Auth\Service\Factory\BlacklistManagerFactory;
+use Auth\Service\Factory\CacheStorageFactory;
 use Auth\Service\Factory\JwtAuthAdapterFactory;
 use Auth\Service\JwtAuthAdapter;
+use Auth\Service\Storage\CacheStorage;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Zend\Authentication\AuthenticationService;
 use Zend\Router\Http\Literal;
@@ -68,6 +72,16 @@ return [
                     ],
                 ],
             ],
+            'logout'   => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/api/logout',
+                    'defaults' => [
+                        'controller' => AuthController::class,
+                        'action'     => 'logout',
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [
@@ -76,6 +90,8 @@ return [
             Service\JwtManager::class    => Service\Factory\JwtManagerFactory::class,
             AuthenticationService::class => Service\Factory\AuthServiceFactory::class,
             JwtAuthAdapter::class        => JwtAuthAdapterFactory::class,
+            CacheStorage::class          => CacheStorageFactory::class,
+            BlacklistManager::class      => BlacklistManagerFactory::class,
         ],
     ],
     'controllers'     => [

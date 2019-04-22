@@ -2,6 +2,7 @@
 
 namespace Auth\Service\Factory;
 
+use Auth\Service\BlacklistManager;
 use Auth\Service\JwtManager;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Parser;
@@ -20,7 +21,8 @@ class JwtManagerFactory implements FactoryInterface
             new Builder,
             new Parser,
             new ServerUrl,
-            $container->get('Config')['jwt']
+            $container->get('Config')['jwt'],
+            $container->get(BlacklistManager::class)
         );
     }
 }
