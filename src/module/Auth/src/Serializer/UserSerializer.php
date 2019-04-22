@@ -19,12 +19,15 @@ class UserSerializer extends JsonModel
         if ($resource) {
             $result = [
                 'data' => [
-                    'id' => $resource->getId(),
-                    'name' => $resource->getName(),
-                    'email' => $resource->getEmail(),
-                    'created_at' => $resource->getCreatedAt(),
-                    'updated_at' => $resource->getUpdatedAt(),
-                ]
+                    'id'         => $resource->getId(),
+                    'type'       => 'user',
+                    'attributes' => [
+                        'name'       => $resource->getName(),
+                        'email'      => $resource->getEmail(),
+                        'created_at' => $resource->getCreatedAt(),
+                        'updated_at' => $resource->getUpdatedAt(),
+                    ],
+                ],
             ];
         }
 

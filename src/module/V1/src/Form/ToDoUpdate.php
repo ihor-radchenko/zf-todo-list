@@ -4,10 +4,10 @@ namespace V1\Form;
 
 use Zend\Form\Form;
 
-class ToDoCreate extends Form
+class ToDoUpdate extends Form
 {
     /**
-     * ToDoCreate constructor.
+     * ToDoUpdate constructor.
      *
      * @param null $name
      * @param array $options
@@ -35,6 +35,13 @@ class ToDoCreate extends Form
                             'max' => 255,
                         ],
                     ],
+                ],
+            ]);
+            $inputFilter->add([
+                'name'       => 'is_completed',
+                'required'   => true,
+                'filters'    => [
+                    ['name' => 'Boolean'],
                 ],
             ]);
         }

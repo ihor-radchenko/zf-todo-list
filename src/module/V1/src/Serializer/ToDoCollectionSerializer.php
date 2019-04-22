@@ -19,11 +19,14 @@ class ToDoCollectionSerializer extends JsonModel
             foreach ($resources as $resource) {
                 $result['data'][] = [
                     'id'           => $resource->getId(),
-                    'title'        => $resource->getTitle(),
-                    'user_id'      => $resource->getUserId(),
-                    'is_completed' => $resource->getIsCompleted(),
-                    'created_at'   => $resource->getCreatedAt(),
-                    'updated_at'   => $resource->getUpdatedAt(),
+                    'type'         => 'todo',
+                    'attributes'   => [
+                        'title'        => $resource->getTitle(),
+                        'user_id'      => $resource->getUserId(),
+                        'is_completed' => $resource->getIsCompleted(),
+                        'created_at'   => $resource->getCreatedAt(),
+                        'updated_at'   => $resource->getUpdatedAt(),
+                    ],
                 ];
             }
         }

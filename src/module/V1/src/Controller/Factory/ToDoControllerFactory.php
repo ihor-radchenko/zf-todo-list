@@ -2,6 +2,7 @@
 
 namespace V1\Controller\Factory;
 
+use Doctrine\ORM\EntityManager;
 use V1\Service\ToDoManager;
 use Interop\Container\ContainerInterface;
 use V1\Controller\ToDoController;
