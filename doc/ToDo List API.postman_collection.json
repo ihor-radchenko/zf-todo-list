@@ -1,0 +1,1690 @@
+{
+	"info": {
+		"_postman_id": "a10b650f-0acb-41b3-817c-734f5c32dd13",
+		"name": "ToDo List API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cc34c83b-9e43-4830-a8b0-f8b3dd513277",
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    pm.environment.set(\"access_token\", pm.response.json().access_token);",
+									"    pm.environment.set(\"refresh_token\", pm.response.json().refresh_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "radchenko_io@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Ihor",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "confirm_password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						},
+						"description": "Создание нового пользователя, получение токенов доступа."
+					},
+					"response": [
+						{
+							"name": "Register validation error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "radchenko@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Ihor",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "confirm_password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:19:02 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": {\n        \"objectFound\": \"A user with this email already exists.\"\n    }\n}"
+						},
+						{
+							"name": "Register success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "radchenko@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Ihor",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "confirm_password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:17:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "590"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"bearer\",\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJpc3MiOiIxMjcuMC4wLjEiLCJpYXQiOjE1NTU5NTM0NjIsIm5iZiI6MTU1NTk1MzQ2MiwiZXhwIjoxNTU1OTU3MDYyLCJqdGkiOiIyRm1peEx0WWNWQlJXc2JyIiwic3ViIjoiMTYiLCJhY2MiOnRydWV9.qAaixFomHcUyIGVbi1N909lCS1_afC-_aky51xkOkNWpp4gII018cH9zoCPGbjQV\",\n    \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJpc3MiOiIxMjcuMC4wLjEiLCJpYXQiOjE1NTU5NTM0NjIsIm5iZiI6MTU1NTk1MzQ2MiwiZXhwIjoxNTU3MTYzMDYyLCJqdGkiOiIwUmNNMlBseWc0aGxyUGZlIiwic3ViIjoiMTYiLCJhY2MiOmZhbHNlfQ.aqZpTkWEcz0fWcYJVkkytiwuE4CU3RJb_TIjGFnDyjdTyqByO-DDBw5QgLpURw4C\",\n    \"expired_in\": 3600\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "810f523d-627e-4e10-aa9f-236194dca939",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    pm.environment.set(\"access_token\", pm.response.json().access_token);",
+									"    pm.environment.set(\"refresh_token\", pm.response.json().refresh_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "radchenko_io@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "Получение токенов доступа."
+					},
+					"response": [
+						{
+							"name": "Login validation error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "radchenko_io1@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:22:17 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": {\n        \"noObjectFound\": \"Invalid credentials.\"\n    }\n}"
+						},
+						{
+							"name": "Login success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "radchenko_io@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:22:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "590"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"bearer\",\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJpc3MiOiIxMjcuMC4wLjEiLCJpYXQiOjE1NTU5NTM3MjIsIm5iZiI6MTU1NTk1MzcyMiwiZXhwIjoxNTU1OTU3MzIyLCJqdGkiOiJxWjZtNU5lZ0FWRFhxdVNUIiwic3ViIjoiMTciLCJhY2MiOnRydWV9.Lp1K6gx5jRonDPTAN3ukeIyozfVPlIhkCypoMNrnSWNdY0Pf7If79G4sOdLIUzUH\",\n    \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJpc3MiOiIxMjcuMC4wLjEiLCJpYXQiOjE1NTU5NTM3MjIsIm5iZiI6MTU1NTk1MzcyMiwiZXhwIjoxNTU3MTYzMzIyLCJqdGkiOiI4a1U2aUJ4QU1SY3lSTTVYIiwic3ViIjoiMTciLCJhY2MiOmZhbHNlfQ.GuoMnX4jFApYUyU9J9bnv79fZ_3r45DhvKO2I7t1MFjo0H2_Wu7Lw_5FMSLH-WOG\",\n    \"expired_in\": 3600\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d63cc4f8-367b-4f60-9344-7540af3da63f",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    pm.environment.set(\"access_token\", pm.response.json().access_token);",
+									"    pm.environment.set(\"refresh_token\", pm.response.json().refresh_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{refresh_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"refresh"
+							]
+						},
+						"description": "Обновление токенов доступа."
+					},
+					"response": [
+						{
+							"name": "Refresh Token invalid token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/refresh",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"refresh"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:24:08 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": \"Invalid token.\"\n}"
+						},
+						{
+							"name": "Refresh Token success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/refresh",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"refresh"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:23:46 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "590"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"bearer\",\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJpc3MiOiIxMjcuMC4wLjEiLCJpYXQiOjE1NTU5NTM4MjcsIm5iZiI6MTU1NTk1MzgyNywiZXhwIjoxNTU1OTU3NDI3LCJqdGkiOiJDRkF3WWc3MEdxdFY4YTZhIiwic3ViIjoiMTciLCJhY2MiOnRydWV9.F00IEaoul2be9Jz8NsaARnEDlVL8G-XT7ARhP5wem8aC75RULC4bCHmLWRiGiJ_H\",\n    \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJpc3MiOiIxMjcuMC4wLjEiLCJpYXQiOjE1NTU5NTM4MjcsIm5iZiI6MTU1NTk1MzgyNywiZXhwIjoxNTU3MTYzNDI3LCJqdGkiOiJST0lEbnlFdmZNY3pXeDZlIiwic3ViIjoiMTciLCJhY2MiOmZhbHNlfQ.sX0MkfFTJ3aiGWt23qyITlxPtK9G_PiM_iDalYAhaaPfdkh1JNEYZag4PHn9AkY6\",\n    \"expired_in\": 3600\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"logout"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 18:58:05 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=95"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Self",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/self",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"self"
+							]
+						},
+						"description": "Получение данных о залогиненом юзере."
+					},
+					"response": [
+						{
+							"name": "Self success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/self",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"self"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:54:20 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "283"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 17,\n        \"type\": \"user\",\n        \"attributes\": {\n            \"name\": \"Ihor\",\n            \"email\": \"radchenko_io@gmail.com\",\n            \"created_at\": \"2019-04-22T17:20:58+00:00\",\n            \"updated_at\": \"2019-04-22T17:20:58+00:00\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ToDo",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/todos?",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "-is_completed",
+									"disabled": true
+								},
+								{
+									"key": "filter[is_completed]",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Получение todo списка пользователя. \nДля получения только завершенных todo можно использовать фильтр(параметр filter[is_completed]=1), соответсвенно для получения только не завершенных (filter[is_completed]=0).\nДля сортировки списка используется параметр sort. Доступные поля (title, is_completed, created_at, updated_at), для указания направления: - перед полем DESC, иначе ASC."
+					},
+					"response": [
+						{
+							"name": "List only completed",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/todos?filter[is_completed]=1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"todos"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "-is_completed",
+											"disabled": true
+										},
+										{
+											"key": "filter[is_completed]",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 18:10:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "354"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=99"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 6,\n            \"type\": \"todo\",\n            \"attributes\": {\n                \"title\": \"Title\",\n                \"user_id\": 17,\n                \"is_completed\": true,\n                \"created_at\": \"2019-04-22T17:55:27+00:00\",\n                \"updated_at\": \"2019-04-22T17:57:31+00:00\"\n            }\n        }\n    ]\n}"
+						},
+						{
+							"name": "List success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/todos?",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"todos"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "-is_completed",
+											"disabled": true
+										},
+										{
+											"key": "filter[is_completed]",
+											"value": "0",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 18:09:16 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "690"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 6,\n            \"type\": \"todo\",\n            \"attributes\": {\n                \"title\": \"Title\",\n                \"user_id\": 17,\n                \"is_completed\": true,\n                \"created_at\": \"2019-04-22T17:55:27+00:00\",\n                \"updated_at\": \"2019-04-22T17:57:31+00:00\"\n            }\n        },\n        {\n            \"id\": 5,\n            \"type\": \"todo\",\n            \"attributes\": {\n                \"title\": \"New todo\",\n                \"user_id\": 17,\n                \"is_completed\": false,\n                \"created_at\": \"2019-04-22T17:31:41+00:00\",\n                \"updated_at\": \"2019-04-22T17:31:41+00:00\"\n            }\n        }\n    ]\n}"
+						},
+						{
+							"name": "List sort is_completed desc",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/todos?sort=-is_completed",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"todos"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "-is_completed"
+										},
+										{
+											"key": "filter[is_completed]",
+											"value": "0",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 18:10:03 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "690"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 6,\n            \"type\": \"todo\",\n            \"attributes\": {\n                \"title\": \"Title\",\n                \"user_id\": 17,\n                \"is_completed\": true,\n                \"created_at\": \"2019-04-22T17:55:27+00:00\",\n                \"updated_at\": \"2019-04-22T17:57:31+00:00\"\n            }\n        },\n        {\n            \"id\": 5,\n            \"type\": \"todo\",\n            \"attributes\": {\n                \"title\": \"New todo\",\n                \"user_id\": 17,\n                \"is_completed\": false,\n                \"created_at\": \"2019-04-22T17:31:41+00:00\",\n                \"updated_at\": \"2019-04-22T17:31:41+00:00\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"todos",
+								"{{todo_id}}"
+							]
+						},
+						"description": "Получение 1 todo пользователя."
+					},
+					"response": [
+						{
+							"name": "Show success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"todos",
+										"{{todo_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:55:54 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "302"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 6,\n        \"type\": \"todo\",\n        \"attributes\": {\n            \"title\": \"New todo\",\n            \"user_id\": 17,\n            \"is_completed\": false,\n            \"created_at\": \"2019-04-22T17:55:27+00:00\",\n            \"updated_at\": \"2019-04-22T17:55:27+00:00\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Show not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"todos",
+										"{{todo_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:32:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "169"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Page not found.\",\n    \"reason\": \"error-controller-cannot-dispatch\",\n    \"display_exceptions\": true,\n    \"controller\": \"V1\\\\Controller\\\\ToDoController\",\n    \"controller_class\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "809eada8-756b-4a23-8b51-1a1e70a1bb6a",
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    pm.environment.set(\"todo_id\", pm.response.json().data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "New todo",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/todos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"todos"
+							]
+						},
+						"description": "Создание нового ToDo."
+					},
+					"response": [
+						{
+							"name": "Create validation error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "New todo",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/todos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"todos"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:31:56 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": {\n        \"isEmpty\": \"Value is required and can't be empty\"\n    }\n}"
+						},
+						{
+							"name": "Create success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "New todo",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/todos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"todos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:55:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "302"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 6,\n        \"type\": \"todo\",\n        \"attributes\": {\n            \"title\": \"New todo\",\n            \"user_id\": 17,\n            \"is_completed\": false,\n            \"created_at\": \"2019-04-22T17:55:27+00:00\",\n            \"updated_at\": \"2019-04-22T17:55:27+00:00\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Title",
+									"type": "text"
+								},
+								{
+									"key": "is_completed",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"todos",
+								"{{todo_id}}"
+							]
+						},
+						"description": "Обновление todo."
+					},
+					"response": [
+						{
+							"name": "Update success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "Title",
+											"type": "text"
+										},
+										{
+											"key": "is_completed",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"todos",
+										"{{todo_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:57:30 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "298"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 6,\n        \"type\": \"todo\",\n        \"attributes\": {\n            \"title\": \"Title\",\n            \"user_id\": 17,\n            \"is_completed\": true,\n            \"created_at\": \"2019-04-22T17:55:27+00:00\",\n            \"updated_at\": \"2019-04-22T17:57:31+00:00\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Update validation error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "Title",
+											"type": "text"
+										},
+										{
+											"key": "is_completed",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"todos",
+										"{{todo_id}}"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:57:43 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"is_completed\": {\n        \"isEmpty\": \"Value is required and can't be empty\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"todos",
+								"{{todo_id}}"
+							]
+						},
+						"description": "Удаление todo."
+					},
+					"response": [
+						{
+							"name": "Delete success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"todos",
+										"{{todo_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:58:45 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Delete not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"todos",
+										"{{todo_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2019 17:58:58 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.25 (Debian)"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "169"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Page not found.\",\n    \"reason\": \"error-controller-cannot-dispatch\",\n    \"display_exceptions\": true,\n    \"controller\": \"V1\\\\Controller\\\\ToDoController\",\n    \"controller_class\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
