@@ -19,5 +19,4 @@ return [
     'DoctrineORMModule',
     'V1',
     'Auth',
-    'Application',
 ];

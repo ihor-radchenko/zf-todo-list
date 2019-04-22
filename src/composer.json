@@ -30,8 +30,7 @@
     "autoload": {
         "psr-4": {
             "V1\\": "module/V1/src/",
-            "Auth\\": "module/Auth/src/",
-            "Application\\": "module/Application/src/"
+            "Auth\\": "module/Auth/src/"
         }
     },
     "autoload-dev": {

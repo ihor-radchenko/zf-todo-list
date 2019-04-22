@@ -18,7 +18,7 @@ class Module
 
     public function onBootstrap(MvcEvent $e)
     {
-//        $e->setViewModel(new JsonModel);
+        $e->setViewModel(new JsonModel);
 
         $app    = $e->getApplication();
         $em     = $app->getEventManager();
