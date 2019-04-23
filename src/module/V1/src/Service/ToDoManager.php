@@ -102,7 +102,7 @@ class ToDoManager
         $filter = ['user_id' => $user->getId()];
         $sort = ['created_at' => 'DESC'];
 
-        if (array_key_exists('sort', $params) && in_array($params['sort'], ['title', 'is_completed', 'created_at', 'updated_at'])) {
+        if (array_key_exists('sort', $params) && in_array(ltrim($params['sort'], '-'), ['title', 'is_completed', 'created_at', 'updated_at'])) {
             $sort = $params['sort'][0] === '-' ? [substr($params['sort'], 1) => 'DESC'] : [$params['sort'] => 'ASC'];
         }
 
